@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKD Prediction Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        html{
+            height:100%;
+            box-sizing:border-box;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: lightblue;
+            border-bottom: 2px solid darkblue;
+            padding: 10px 100px;
+            color: white;
+            z-index: 1000;
+        }
+        .navbar img {
+            height: 40px;
+            margin-right: 10px;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        .navbar h1 {
+            margin: 0;
+            color: darkblue;
+            font-size: 24px;
+            z-index: 1000;
+        }
+        .navbar .dropdown {
+            position: relative;
+            display: inline-block;
+            z-index: 1000;
+        }
+        .dropbtn {
+            background-color: darkblue;
+            color: rgb(245, 198, 198);
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            z-index: 1000;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #ddd;
+            z-index: 1000;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            z-index: 1000;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+            z-index: 1000;
+        }
+        .footer {
+            background-color: lightblue;
+            border-top: 2px solid darkblue;
+            text-align: center;
+            padding: 20px;
+            color: darkblue;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 100px;
+            margin-top: 35px;
+            position:absolute;
+            right:0;
+            left:0;
+            bottom: 0;
+        }
+        .footer .logo {
+            display: flex;
+            align-items: center;
+        }
+        .footer img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .footer .social-icons a {
+            margin: 0 10px;
+            color: darkblue;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        .middle{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            margin-top:50px;
+            
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        select {
+            appearance: none;
+            padding: 10px;
+            background: #fff;
+            background-image: linear-gradient(45deg, transparent 50%, #0056b3 50%), linear-gradient(135deg, #0056b3 50%, transparent 50%);
+            background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+            background-size: 5px 5px, 5px 5px;
+            background-repeat: no-repeat;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
+        }
+        button {
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #041628;
+        }
+        body {
+            background-image: url('static/back.jpg');
+            background-size: contain;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background: #f5f5f5;
+            position:relative ;
+            margin:0;
+            min-height:100%;
+            padding-bottom:6.74rem;
+            box-sizing:inherit;
+            
+        }
+        .result-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.75); /* Translucent white background */
+            border:2px solid black;
+            height:400px;
+            width:600px;
+            padding:50px;
+            
+        }
+        .btn-primary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="static/logo.png" alt="Logo">
+        </div>
+        <div>
+            <h1>Kidney Care</h1>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="/">Home</a>
+                <a href="/about">About(CKD)</a>
+                <a href="/model">Model</a>
+                <a href="/dataset">Dataset</a>
+            </div>
+        </div>
+    </div>
+    <div class='middle'>
+        <div class="result-card">
+            <h1>CKD Prediction Result</h1>
+            <p><h3><u>{{ prediction_text }}</u></h1></p>
+            {% if "You have Chronic Kidney Disease" in prediction_text %}
+                <p><b>Please contact a healthcare provider immediately.</b></p>
+                <p>Hospital: City Health Clinic</p>
+                <p>Phone: +1 800 123 4567</p>
+                <p>Helpline: +1 800 765 4321</p>
+                <a href="/about" class="btn btn-primary">Read More About CKD</a>
+            {% else %}
+                <p>Congratulations! You don't have Chronic Kidney Disease.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="footer">
+        <div class="logo">
+            <img src="static/logo.png" alt="Logo">
+        </div>
+        <div>&copy; 2024 Kidney Care. All rights reserved.</div>
+        <div class="social-icons">
+            <a href="https://github.com" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.167 6.839 9.491.5.092.682-.217.682-.482 0-.237-.009-.865-.013-1.699-2.782.605-3.368-1.342-3.368-1.342-.455-1.153-1.111-1.461-1.111-1.461-.909-.62.069-.607.069-.607 1.004.071 1.53 1.03 1.53 1.03.891 1.527 2.34 1.087 2.912.83.091-.645.349-1.087.634-1.336-2.22-.252-4.555-1.108-4.555-4.932 0-1.09.39-1.984 1.029-2.682-.103-.251-.447-1.268.097-2.642 0 0 .84-.268 2.75 1.022a9.607 9.607 0 0 1 2.5-.337 9.612 9.612 0 0 1 2.5.337c1.909-1.29 2.748-1.022 2.748-1.022.546 1.374.202 2.391.1 2.642.641.698 1.027 1.592 1.027 2.682 0 3.834-2.338 4.676-4.566 4.922.359.308.678.916.678 1.847 0 1.334-.012 2.412-.012 2.743 0 .267.18.578.688.48C19.139 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+            </a>
+
+        </div>
+    </div>
+</body>
+</html>

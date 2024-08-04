@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKD Prediction Form</title>
+    <style>
+        html{
+            height:100%;
+            box-sizing:border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            background-color: #ad9292;
+            background-image: url('static/back.jpg');
+            background-size: contain;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position:relative ;
+            margin:0;
+            min-height:100%;
+            padding-bottom:6.74rem;
+            box-sizing:inherit;
+            margin: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.75); /* Translucent white background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 500px;
+            overflow-y: auto; /* Enable vertical scrolling */
+            overflow-x: hidden; /* Hide horizontal scrollbar if content exceeds width */
+            margin-top: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #0056b3;
+            margin-bottom: 30px;
+        }
+        
+        form {
+            display: grid;
+            gap: 15px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: lightblue;
+            border-bottom: 2px solid darkblue;
+            padding: 10px 100px;
+            color: white;
+            z-index: 1000;
+        }
+        .navbar img {
+            height: 40px;
+            margin-right: 10px;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        .navbar h1 {
+            margin: 0;
+            color: darkblue;
+            font-size: 24px;
+            z-index: 1000;
+        }
+        .navbar .dropdown {
+            position: relative;
+            display: inline-block;
+            z-index: 1000;
+        }
+        .dropbtn {
+            background-color: darkblue;
+            color: rgb(245, 198, 198);
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            z-index: 1000;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #ddd;
+            z-index: 1000;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            z-index: 1000;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+            z-index: 1000;
+        }
+        .footer {
+            background-color: lightblue;
+            border-top: 2px solid darkblue;
+            text-align: center;
+            padding: 20px;
+            color: darkblue;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 100px;
+            margin-top: 35px;
+            position:absolute;
+            right:0;
+            left:0;
+            bottom: 0;
+        }
+        .footer .logo {
+            display: flex;
+            align-items: center;
+        }
+        .footer img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .footer .social-icons a {
+            margin: 0 10px;
+            color: darkblue;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        select {
+            appearance: none;
+            padding: 10px;
+            background: #fff;
+            background-image: linear-gradient(45deg, transparent 50%, #0056b3 50%), linear-gradient(135deg, #0056b3 50%, transparent 50%);
+            background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+            background-size: 5px 5px, 5px 5px;
+            background-repeat: no-repeat;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
+        }
+        button {
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #041628;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="static/logo.png" alt="Logo">
+        </div>
+        <div>
+            <h1>Kidney Care</h1>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="/">Home</a>
+                <a href="/about">About(CKD)</a>
+                <a href="/model">Model</a>
+                <a href="/dataset">Dataset</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CKD Prediction Form</h2>
+        <form method="POST" action="{{url_for('hell')}}">
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="bloodPressure">Blood Pressure (mm/Hg):</label>
+            <input type="number" id="bloodPressure" name="bp" required>
+
+            <label for="specificGravity">Specific Gravity (sg):</label>
+            <input type="number" step="0.01" id="specificGravity" name="sg" required>
+
+            <label for="albumin">Albumin (al):</label>
+            <input type="number" id="albumin" name="al" required>
+
+            <label for="sugar">Sugar (su):</label>
+            <input type="number" id="sugar" name="su" required>
+
+            <label for="redBloodCells">Red Blood Cells (rbc):</label>
+            <select id="redBloodCells" name="rbc" required>
+                <option value="1">Normal</option>
+                <option value="0">Abnormal</option>
+            </select>
+
+            <label for="pusCell">Pus Cell (pc):</label>
+            <select id="pusCell" name="pc" required>
+                <option value="1">Normal</option>
+                <option value="0">Abnormal</option>
+            </select>
+
+            <label for="pusCellClumps">Pus Cell Clumps (pcc):</label>
+            <select id="pusCellClumps" name="pcc" required>
+                <option value="1">Present</option>
+                <option value="0">Not Present</option>
+            </select>
+
+            <label for="bacteria">Bacteria (ba):</label>
+            <select id="bacteria" name="ba" required>
+                <option value="1">Present</option>
+                <option value="0">Not Present</option>
+            </select>
+
+            <label for="bloodGlucoseRandom">Blood Glucose Random (bgr):</label>
+            <input type="number" id="bloodGlucoseRandom" name="bgr" required>
+
+            <label for="bloodUrea">Blood Urea (bu):</label>
+            <input type="number" id="bloodUrea" name="bu" required>
+
+            <label for="serumCreatinine">Serum Creatinine (sc):</label>
+            <input type="number" id="serumCreatinine" name="sc" required>
+
+            <label for="sodium">Sodium (sod):</label>
+            <input type="number" id="sodium" name="sod" required>
+
+            <label for="potassium">Potassium (pot):</label>
+            <input type="number" id="potassium" name="pot" required>
+
+            <label for="hemoglobin">Hemoglobin (hemo):</label>
+            <input type="number" step="0.1" id="hemoglobin" name="hemo" required>
+
+            <label for="packedCellVolume">Packed Cell Volume (pcv):</label>
+            <input type="number" id="packedCellVolume" name="pcv" required>
+
+            <label for="whiteBloodCellCount">White Blood Cell Count (wc):</label>
+            <input type="number" id="whiteBloodCellCount" name="wc" required>
+
+            <label for="redBloodCellCount">Red Blood Cell Count (rc):</label>
+            <input type="number" id="redBloodCellCount" name="rc" required>
+
+            <label for="hypertension">Hypertension (htn):</label>
+            <select id="hypertension" name="htn" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="diabetesMellitus">Diabetes Mellitus (dm):</label>
+            <select id="diabetesMellitus" name="dm" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="coronaryArteryDisease">Coronary Artery Disease (cad):</label>
+            <select id="coronaryArteryDisease" name="cad" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="appetite">Appetite (appet):</label>
+            <select id="appetite" name="appet" required>
+                <option value="1">Good</option>
+                <option value="0">Poor</option>
+            </select>
+
+            <label for="pedalEdema">Pedal Edema (pe):</label>
+            <select id="pedalEdema" name="pe" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="anemia">Anemia (ane):</label>
+            <select id="anemia" name="ane" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+<div class="footer">
+    <div class="logo">
+        <img src="static/logo.png" alt="Logo">
+    </div>
+    <div>&copy; 2024 Kidney Care. All rights reserved.</div>
+    <div class="social-icons">
+        <a href="https://github.com" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.167 6.839 9.491.5.092.682-.217.682-.482 0-.237-.009-.865-.013-1.699-2.782.605-3.368-1.342-3.368-1.342-.455-1.153-1.111-1.461-1.111-1.461-.909-.62.069-.607.069-.607 1.004.071 1.53 1.03 1.53 1.03.891 1.527 2.34 1.087 2.912.83.091-.645.349-1.087.634-1.336-2.22-.252-4.555-1.108-4.555-4.932 0-1.09.39-1.984 1.029-2.682-.103-.251-.447-1.268.097-2.642 0 0 .84-.268 2.75 1.022a9.607 9.607 0 0 1 2.5-.337 9.612 9.612 0 0 1 2.5.337c1.909-1.29 2.748-1.022 2.748-1.022.546 1.374.202 2.391.1 2.642.641.698 1.027 1.592 1.027 2.682 0 3.834-2.338 4.676-4.566 4.922.359.308.678.916.678 1.847 0 1.334-.012 2.412-.012 2.743 0 .267.18.578.688.48C19.139 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+            </svg>
+        </a>
+        
+    </div>
+</div>
+
+</body>
+</html>
