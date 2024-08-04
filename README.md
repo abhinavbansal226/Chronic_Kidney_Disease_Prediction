@@ -1,1 +1,3 @@
-# Chronic_Kidney_Disease_Prediction
+This project helps in predicting chronic kidney disease early.
+Special Credits to- Abhinav Bansal,
+                    Ratish R A 
